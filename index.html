@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+
+    <!-- Mobile Responsive -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- PWA -->
+    <meta name="theme-color" content="#0d6efd" />
+    <link rel="manifest" href="manifest.json" />
+
+    <!-- iOS Support -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <title>My PWA App</title>
+
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, sans-serif;
+        }
+
+        body{
+            background:#f1f3f5;
+        }
+
+        .mobile-layout{
+            width:100%;
+            min-height:100vh;
+            display:flex;
+            flex-direction:column;
+            background:white;
+        }
+
+        .header{
+            background:#0d6efd;
+            color:white;
+            padding:20px;
+        }
+
+        .header h2{
+            font-size:22px;
+            margin-bottom:5px;
+        }
+
+        .header p{
+            font-size:14px;
+            opacity:0.9;
+        }
+
+        .content{
+            flex:1;
+            padding:15px;
+            background:#f8f9fa;
+        }
+
+        .card{
+            background:white;
+            border-radius:15px;
+            padding:15px;
+            margin-bottom:15px;
+            box-shadow:0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .card img{
+            width:100%;
+            border-radius:10px;
+            margin-bottom:10px;
+        }
+
+        .card h3{
+            margin-bottom:8px;
+        }
+
+        .card p{
+            color:#666;
+            line-height:1.5;
+        }
+
+        .bottom-nav{
+            position:sticky;
+            bottom:0;
+            background:white;
+            border-top:1px solid #ddd;
+            display:flex;
+            justify-content:space-around;
+            padding:10px 0;
+        }
+
+        .nav-item{
+            text-align:center;
+            font-size:13px;
+            color:#555;
+        }
+
+        .nav-item.active{
+            color:#0d6efd;
+            font-weight:bold;
+        }
+
+        .icon{
+            font-size:22px;
+            margin-bottom:5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="mobile-layout">
+
+    <div class="header">
+        <h2>My PWA App</h2>
+        <p>Progressive Web Application</p>
+    </div>
+
+    <div class="content">
+
+        <div class="card">
+            <img src="https://picsum.photos/400/200" alt="">
+            <h3>Offline Ready</h3>
+            <p>
+                This app can work offline using Service Worker caching.
+            </p>
+        </div>
+
+        <div class="card">
+            <h3>Installable</h3>
+            <p>
+                Users can install this app on Android, iPhone, and Desktop.
+            </p>
+        </div>
+
+    </div>
+
+    <div class="bottom-nav">
+
+        <div class="nav-item active">
+            <div class="icon">🏠</div>
+            Home
+        </div>
+
+        <div class="nav-item">
+            <div class="icon">🔍</div>
+            Search
+        </div>
+
+        <div class="nav-item">
+            <div class="icon">👤</div>
+            Profile
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    // Register Service Worker
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('service-worker.js')
+                .then((reg) => {
+                    console.log('Service Worker Registered', reg);
+                })
+                .catch((err) => {
+                    console.log('Service Worker Failed', err);
+                });
+        });
+    }
+</script>
+
+</body>
+</html>
